@@ -59,7 +59,9 @@ async def obrab1(message: types.Message):
         await bot.send_message(message.from_user.id,
                                """Список полезных ресурсов для пентестеров и хакеров
 
-Друзья, представляю вашему вниманию список полезных ресурсов, благодаря которым можно существенно повысить свой скилл в различных аспектах тестирования на проникновение и информационной безопасности:
+Друзья, представляю вашему вниманию список полезных ресурсов, 
+благодаря которым можно существенно повысить свой скилл в различных аспектах тестирования на проникновение
+и информационной безопасности:
 
 • Мануалы по взлому:
 http://www.ehacking.net/
@@ -108,7 +110,22 @@ http://names.igopaygo.com/people/fake_person""")
 
 @dp.callback_query_handler(lambda c: c.data in other.get_short_groups_for_lambda())
 async def obrab_short_vids(call: types.CallbackQuery):
-    pass
+    videos = db.get_short_vidios(call.data[6:])
+    for vid in videos:
+        try:
+            await bot.send_video(call.from_user.id, vid[0])
+        except BaseException:
+            logging.warning("Что то не так с отправкой короткого видео")
+
+
+@dp.callback_query_handler(lambda c: c.data in other.get_long_groups_for_lambda())
+async def obrab_short_vids(call: types.CallbackQuery):
+    videos = db.get_long_vidios(call.data[5:])
+    for vid in videos:
+        try:
+            await bot.send_video(call.from_user.id, vid[0])
+        except BaseException:
+            logging.warning("Что то не так с отправкой короткого видео")
 
 
 if __name__ == "__main__":

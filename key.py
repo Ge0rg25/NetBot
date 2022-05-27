@@ -15,7 +15,7 @@ def get_full_thems_keys():
     key_board = types.InlineKeyboardMarkup(row_width=1)
     groups = db.get_all_group()
     for i in range(len(groups)):
-        key = types.InlineKeyboardButton(text=groups[i][0], callback_data=f"full-{groups[i][0]}")
+        key = types.InlineKeyboardButton(text=groups[i][0], callback_data=f"long-{groups[i][0]}")
         key_board.add(key)
     return key_board
 
@@ -29,4 +29,4 @@ def get_short_thems_keys():
     return key_board
 
 
-print(get_short_thems_keys())
+
