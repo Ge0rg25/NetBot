@@ -135,5 +135,11 @@ async def obrab_short_vids(call: types.CallbackQuery):
                 logging.warning("Что то не так с отправкой короткого видео")
 
 
+@dp.message_handler(commands=['developer'])
+async def developer(message: types.Message):
+    await bot.send_message(message.from_user.id, 'Содатель данного бота - Бобёр\n'
+                                                 'тг - @Georgiy1928\n'
+                                                 'дс - Бобёр#1098')
+
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
