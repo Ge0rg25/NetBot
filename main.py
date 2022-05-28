@@ -111,8 +111,11 @@ http://names.igopaygo.com/people/fake_person""")
 @dp.callback_query_handler(lambda c: c.data in other.get_short_groups_for_lambda())
 async def obrab_short_vids(call: types.CallbackQuery):
     videos = db.get_short_vidios(call.data[6:])
+    if not videos:
+        await bot.send_message(call.from_user.id, f'У нас нет коротких видео по теме - {call.data[6:]}: ')
     for vid in videos:
         try:
+            await bot.send_message(call.from_user.id, f'Видео по теме - {call.data[6:]}')
             await bot.send_video(call.from_user.id, vid[0])
         except BaseException:
             logging.warning("Что то не так с отправкой короткого видео")
@@ -121,11 +124,15 @@ async def obrab_short_vids(call: types.CallbackQuery):
 @dp.callback_query_handler(lambda c: c.data in other.get_long_groups_for_lambda())
 async def obrab_short_vids(call: types.CallbackQuery):
     videos = db.get_long_vidios(call.data[5:])
-    for vid in videos:
-        try:
-            await bot.send_video(call.from_user.id, vid[0])
-        except BaseException:
-            logging.warning("Что то не так с отправкой короткого видео")
+    if not videos:
+        await bot.send_message(call.from_user.id, f'У нас нет полных лекций по теме - {call.data[5:]}')
+    else:
+        for vid in videos:
+            try:
+                await bot.send_message(call.from_user.id, f'Видео по теме - {call.data[5:]}: ')
+                await bot.send_video(call.from_user.id, vid[0])
+            except BaseException:
+                logging.warning("Что то не так с отправкой короткого видео")
 
 
 if __name__ == "__main__":
