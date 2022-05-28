@@ -3,10 +3,10 @@ import psycopg2
 
 class DateB:
     def __init__(self):
-        self.connection = psycopg2.connect(dbname='d6pbbu8ltmfueb',
-                                           user='rjnlyhjbwbnhit',
-                                           password='72b1af9fffd9dff71bf45874851a3af2d80d835d97b059b0767cc0008b04e7fb',
-                                           host='ec2-3-248-121-12.eu-west-1.compute.amazonaws.com',
+        self.connection = psycopg2.connect(dbname='dek50mluj60fpc',
+                                           user='fxdjzyolpwrdut',
+                                           password='304e34c02ed968882d414ff29d5b7bf3e3544473ff1b07f07c1643f4096d97f9',
+                                           host='ec2-176-34-215-248.eu-west-1.compute.amazonaws.com',
                                            port="5432")
         self.cursor = self.connection.cursor()
 
