@@ -48,3 +48,18 @@ class DateB:
         with self.connection:
             self.cursor.execute("SELECT url FROM long_videos WHERE group_name = %s", (group, ))
             return self.cursor.fetchall()
+
+    def get_hi_msg(self):
+        with self.connection:
+            self.cursor.execute("SELECT hi_msg FROM other WHERE hi_msg = hi_msg")
+            return self.cursor.fetchall()
+
+    def get_hi_video(self):
+        with self.connection:
+            self.cursor.execute("SELECT start_video_url FROM other WHERE start_video_url = start_video_url")
+            return self.cursor.fetchall()
+
+    def get_other_resourses(self):
+        with self.connection:
+            self.cursor.execute("SELECT other_resourses FROM other WHERE other_resourses = other_resourses")
+            return self.cursor.fetchall()
